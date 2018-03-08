@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+<!DOCTYPE html>
+<html>
+{% block body %}
+	<head>
+		<link href='https://fonts.googleapis.com/css?family=Asul' rel='stylesheet'>
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <title>Hive SignUp Page</title>
+	    <link href="https://fonts.googleapis.com/css?family=Asul" rel="stylesheet">
+		<link rel="stylesheet" href="{{ url_for('static', filename='signup.css') }}" type="text/css">
+	</head>
+	<body>
+		<div class="split left">
+			<div class = "vertposition">
+				<h1>BHIVE</h1>
+				<img src={{ url_for('static', filename='beehive.png') }} style="width:150px;height:150px;">
+				<h2 style="font-size: 20px;">join the swarm</h2>
+			</div>
+		</div>
+		<div class="split right" style="max-width:100%; margin:auto; padding-top:150px; ">
+			<div style="margin:auto;">
+       			<form id="signupForm" action="signup.html">
+			         <label>"fname">First Name</label>
+			         <input type="text" id="fname" name="firstname" placeholder="First">
+
+			         <label for="lname">Last Name</label>
+			         <input type="text" id="lname" name="lastname" placeholder="Last">
+
+			         <label for="username">Username</label>
+			         <input type="text" id="txtemail" name="email" placeholder="Enter Email">
+
+			         <label for="password">Create a password</label>
+			         <input type="text" id="txtpassword" name="password" placeholder="Enter Password">
+
+			         <label for="confirm password">Confirm your password</label>
+			         <input type="text" id="confirmpassword" name="confirmpassword" placeholder="Confirm Password">
+
+					<button type="submit" id="btnsignup" class="btn btn-action">Submit</button>
+				</form>
+			</div>
+		</div>
+		<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+		<script src="signup.js"></script>
+	</body>
+{% endblock %}
+</html>

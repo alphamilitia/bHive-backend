@@ -1,0 +1,76 @@
+{% extends 'layout.html' %}
+<!DOCTYPE html>
+<html>
+{% block head %}
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=auto">
+  <link href='https://fonts.googleapis.com/css?family=Asul' rel='stylesheet'>
+  <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='login.css') }}>
+</head>
+{% endblock %}
+{% block body %}
+    {% include 'includes/_navbar.html' %}
+  <body>
+  <div class="jumbotron text-center">
+      <h1>Welcome to B Hive</h1>
+      <img alt="" src={{ url_for('static', filename='beehive.png') }}/>
+      <p class="lead">This application allows you to create your Hive and follow others to get the best deals, events and promotions you can find right in your area</p>
+  </div>
+            <div class = "div">
+                <ul id="hexGrid">
+                  <li class="hex">
+                    <div class="hexIn">
+                      <a class="hexLink" href="#">
+                        <h1>This is a title</h1>
+                        <p>Some sample text about the article this hexagon leads to</p>
+                      </a>
+                    </div>
+                  </li>
+                  <li class="hex">
+                    <div class="hexIn">
+                      <a class="hexLink" href="#">
+                        <h1>This is a title</h1>
+                        <p>Some sample text about the article this hexagon leads to</p>
+                      </a>
+                    </div>
+                  </li>
+                  <li class="hex">
+                    <div class="hexIn">
+                      <a class="hexLink" href="#">
+                        <h1>This is a title</h1>
+                        <p>Some sample text about the article this hexagon leads to</p>
+                      </a>
+                    </div>
+                  </li>
+                </ul>
+          </div>
+        </div>
+
+
+    <script>
+      /* When the user clicks on the button,
+      toggle between hiding and showing the dropdown content */
+      function myFunction() {
+          document.getElementById("myDropdown").classList.toggle("show");
+      }
+
+      // Close the dropdown if the user clicks outside of it
+      window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+
+          var dropdowns = document.getElementsByClassName("dropdown-content");
+          var i;
+          for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+              openDropdown.classList.remove('show');
+            }
+          }
+        }
+      }
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+{#    <script src={{ url_for('static', 'login.js') }}></script>#}
+  </body>
+{% endblock %}
+</html>
