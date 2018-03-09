@@ -1,6 +1,9 @@
-from loginform import LoginForm
-from flask import Flask, request, render_template
 import pyrebase
+from flask import Blueprint, abort, current_app, redirect, request, \
+    render_template, url_for, Flask
+from flask_firebase import FirebaseAuth
+from flask_login import LoginManager, UserMixin, login_user, logout_user
+from flask_sqlalchemy import SQLAlchemy
 
 
 app = Flask(__name__)
@@ -14,8 +17,10 @@ config = {
 }
 
 firebase = pyrebase.initialize_app(config)
-auth = firebase.auth()
-db = firebase.database(app)
+
+db = SQLAlchemy(app)
+auth = FirebaseAuth(app)
+login_manager = LoginManager(app)
 
 
 @app.route('/')
