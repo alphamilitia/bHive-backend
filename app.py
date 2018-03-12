@@ -1,8 +1,5 @@
 import pyrebase
-from flask import Blueprint, abort, current_app, redirect, request, \
-    render_template, url_for, Flask
-from flask_firebase import FirebaseAuth
-from flask_login import LoginManager, UserMixin, login_user, logout_user
+from flask import request, render_template, url_for, Flask
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -16,11 +13,11 @@ config = {
   "serviceAccount": "377032490280"
 }
 
-firebase = pyrebase.initialize_app(config)
-
-db = SQLAlchemy(app)
-auth = FirebaseAuth(app)
-login_manager = LoginManager(app)
+# firebase = pyrebase.initialize_app(config)
+#
+# db = SQLAlchemy(app)
+# auth = FirebaseAuth(app)
+# login_manager = LoginManager(app)
 
 
 @app.route('/')
@@ -28,34 +25,34 @@ def index():
     return render_template('user.html')
 
 
-class User(UserMixin):
-    def __init__(self, email, id, active=True):
-        self.email = email
-        self.id = id
-        self.active = active
+# class User(UserMixin):
+#     def __init__(self, email, id, active=True):
+#         self.email = email
+#         self.id = id
+#         self.active = active
+#
+#     def is_active(self):
+#         return self.active
+#
+#
+# @login_manager.user_loader
+# def load_user(user_id):
+#     usr = db.child("users").order_by_child("id").equal_to(user_id).get()
+#     return User(usr['email'], usr['id'])
+#
 
-    def is_active(self):
-        return self.active
-
-
-@login_manager.user_loader
-def load_user(user_id):
-    usr = db.child("users").order_by_child("id").equal_to(user_id).get()
-    return User(usr['email'], usr['id'])
-
-
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    form = LoginForm()
-
-    if request.method == 'POST':
-        if form.validate_on_submit():
-            user = auth.sign_in_with_email_and_password(form.email.data,     form.password.data)
-            login_user(load_user(user['localId']))
-
-            return redirect(url_for('a-login-restricted-page'))
-
-    return render_template('login-form.html', form=form)
+# @app.route('/login', methods=['GET', 'POST'])
+# def login():
+#     form = LoginForm()
+#
+#     if request.method == 'POST':
+#         if form.validate_on_submit():
+#             user = auth.sign_in_with_email_and_password(form.email.data,     form.password.data)
+#             login_user(load_user(user['localId']))
+#
+#             return redirect(url_for('a-login-restricted-page'))
+#
+#     return render_template('login-form.html', form=form)
 
 
 @app.route('/hives')
